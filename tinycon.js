@@ -11,6 +11,7 @@
 	var Tinycon = {};
 	var currentFavicon = null;
 	var originalFavicon = null;
+	var originalTitle = document.title;
 	var faviconImage = null;
 	var canvas = null;
 	var options = {};
@@ -19,7 +20,8 @@
 		height: 9,
 		font: '10px arial',
 		colour: '#ffffff',
-		background: '#F03D25'
+		background: '#F03D25',
+		fallback: true
 	};
 	
 	var ua = function(browser){
@@ -28,7 +30,10 @@
 	};
 	
 	var browser = {
-		webkit: ua('chrome') || ua('safari')
+		chrome: ua('chrome'),
+		webkit: ua('chrome') || ua('safari'),
+		safari: ua('safari') && !ua('chrome'),
+		mozilla: ua('mozilla') && !ua('chrome') && !ua('safari')
 	};
 	
 	// private
@@ -93,8 +98,11 @@
 	};
 	
 	var drawFavicon = function(num, colour) {
-		// check support
-		if (!getCanvas().getContext) return;
+
+		// fallback to updating the browser title if unsupported
+		if (!getCanvas().getContext || (!browser.chrome && !browser.mozilla)) {
+			return updateTitle(num);
+		}
 		
 		var context = getCanvas().getContext("2d");
 		var colour = colour || '#000000';
@@ -117,6 +125,17 @@
 		};
 		
 		faviconImage.src = getCurrentFavicon();
+	};
+	
+	var updateTitle = function(num) {
+		
+		if (options.fallback) {
+			if (num > 0) {
+				document.title = '('+num+') ' + originalTitle;
+			} else {
+				document.title = originalTitle;
+			}
+		}
 	};
 	
 	var drawBubble = function(context, num, colour) {

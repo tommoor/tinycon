@@ -20,13 +20,15 @@ Tinycon can take a range of options to customise the look
 * font: a css string to use for the fontface (recommended to leave this)
 * colour: the foreground font colour
 * background: the alert bubble background colour
+* fallback: should we fallback to a number in brackets for browser that dont support canvas/dynamic favicons
 
         Tinycon.setOptions({
           	width: 7,
 			height: 9,
 			font: '10px arial',
 			colour: '#ffffff',
-			background: '#549A2F'
+			background: '#549A2F',
+			fallback: true
         });
 
 
