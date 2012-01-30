@@ -1,6 +1,6 @@
 # Tinycon
 
-A tiny library for manipulating the favicon, in particular adding alert bubbles and changing images.
+A small library for manipulating the favicon, in particular adding alert bubbles and changing images.
 
 
 ## Documentation

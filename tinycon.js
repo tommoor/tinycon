@@ -9,8 +9,9 @@
 (function(){
 	
 	var Tinycon = {};
+	var currentFavicon = null;
 	var originalFavicon = null;
-	var originalImage = null;
+	var faviconImage = null;
 	var canvas = null;
 	var options = {};
 	var defaults = {
@@ -18,7 +19,16 @@
 		height: 9,
 		font: '10px arial',
 		colour: '#ffffff',
-		background: '#549A2F'
+		background: '#F03D25'
+	};
+	
+	var ua = function(browser){
+		var agent = navigator.userAgent.toLowerCase();
+		return agent.indexOf(browser) !== -1;
+	};
+	
+	var browser = {
+		webkit: ua('chrome') || ua('safari')
 	};
 	
 	// private
@@ -33,7 +43,7 @@
 		}
 		
 		return false;
-	}
+	};
 	
 	var removeFaviconTag = function(){
 	
@@ -45,17 +55,17 @@
 				head.removeChild(links[i]);
 			}
 		}
-	}
+	};
 	
-	var getOriginalFavicon = function(){
+	var getCurrentFavicon = function(){
 		
-		if (!originalFavicon) {
+		if (!originalFavicon || !currentFavicon) {
 			var tag = getFaviconTag();
-			originalFavicon = tag ? tag.getAttribute('href') : '/favicon.ico';
+			originalFavicon = currentFavicon = tag ? tag.getAttribute('href') : '/favicon.ico';
 		}
 
-		return originalFavicon;
-	}
+		return currentFavicon;
+	};
 	
 	var getCanvas = function (){
 		
@@ -66,21 +76,21 @@
 		}
 		
 		return canvas;
-	}
+	};
 	
 	var setFaviconTag = function(url){
 		removeFaviconTag();
 		
 		var link = document.createElement('link');
 		link.type = 'image/x-icon';
-	    link.rel = 'icon';
-	    link.href = url;
-	    document.getElementsByTagName('head')[0].appendChild(link);
-	}
+		link.rel = 'icon';
+		link.href = url;
+		document.getElementsByTagName('head')[0].appendChild(link);
+	};
 	
 	var log = function(message){
-		if (window.console) console.log(message);
-	}
+		if (window.console) window.console.log(message);
+	};
 	
 	var drawFavicon = function(num, colour) {
 		// check support
@@ -90,33 +100,36 @@
 		var colour = colour || '#000000';
 		var num = num || 0;
 		
-		originalImage = new Image();
-		originalImage.onload = function() {
+		faviconImage = new Image();
+		faviconImage.onload = function() {
 			
 			// clear canvas  
 			context.clearRect(0, 0, 16, 16);
 
 			// draw original favicon
-			context.drawImage(originalImage, 0, 0);
+			context.drawImage(faviconImage, 0, 0);
 			
 			// draw bubble over the top
 			if (num > 0) drawBubble(context, num, colour);
 			
 			// refresh tag in page
 			refreshFavicon();
-		}
-		originalImage.src = getOriginalFavicon();
-	}
+		};
+		
+		faviconImage.src = getCurrentFavicon();
+	};
 	
 	var drawBubble = function(context, num, colour) {
-
+		
 		// bubble needs to be larger for double digits
-		var width = num > 9 ? options.width+6 : options.width;
+		var len = (num+"").length-1;
+		var width = options.width + (6*len);
 		var w = 16-width;
 		var h = 16-options.height;
 
-		context.font = options.font;
-	    context.fillStyle = options.background;
+		// webkit seems to render fonts lighter than firefox
+		context.font = (browser.webkit ? 'bold ' : '') + options.font;
+		context.fillStyle = options.background;
 		context.strokeStyle = options.background;
 		context.lineWidth = 1;
 		
@@ -146,15 +159,17 @@
 		context.fillStyle = options.colour;
 		context.textAlign = "right";
 		context.textBaseline = "top";
-	    context.fillText(num,15,6);
-	}
+		
+		// unfortunately webkit/mozilla are a pixel different in text positioning
+		context.fillText(num, 15, browser.webkit ? 6 : 7);  
+	};
 	
 	var refreshFavicon = function(){
 		// check support
 		if (!getCanvas().getContext) return;
 		
 		setFaviconTag(getCanvas().toDataURL());
-	}
+	};
 	
 	
 	// public
@@ -165,13 +180,13 @@
 			options[i] = custom[i] ? custom[i] : defaults[i];
 		}
 		return this;
-	}
+	};
 	
 	Tinycon.setImage = function(url){
-		originalFavicon = url;
+		currentFavicon = url;
 		refreshFavicon();
 		return this;
-	}
+	};
 	
 	Tinycon.setBubble = function(num, colour){
 		
@@ -180,11 +195,11 @@
 		
 		drawFavicon(num, colour);
 		return this;
-	}
+	};
 	
 	Tinycon.reset = function(){
-		// todo
-	}
+		Tinycon.setImage(originalFavicon);
+	};
 	
 	Tinycon.setOptions(defaults);
 	window.Tinycon = Tinycon;
