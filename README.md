@@ -1,7 +1,8 @@
 # Tinycon
 
-A small library for manipulating the favicon, in particular adding alert bubbles and changing images.
+A small library for manipulating the favicon, in particular adding alert bubbles and changing images. Tinycon gracefully falls back to a number in title approach for browers that don't support canvas or dynamic favicons.
 
+<img src="https://github.com/tommoor/tinycon/blob/master/examples/screenshot.png?raw=true" />
 
 ## Documentation
 
