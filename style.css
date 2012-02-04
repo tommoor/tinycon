@@ -158,7 +158,10 @@ ul.share-buttons {
 
 ul.share-buttons li {
 	display: inline-block;
-	width: 50px;
+	width: 55px;
 	height: 62px;
-	margin-right: 5px;
+}
+
+ul.share-buttons li.narrow {
+	width: 48px;
 }
