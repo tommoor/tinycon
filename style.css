@@ -1,0 +1,147 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+body {
+	margin: 0;
+	font-family: Verdana, Arial, sans-serif;
+	line-height: 1.4;
+}
+
+#container {
+	width: 600px;
+	margin: 1em auto;
+}
+
+h1, h2, h3, h4 {
+	font-family: Geneva, ‘Lucida Sans’, ‘Lucida Grande’, ‘Lucida Sans Unicode’, Verdana, sans-serif;
+	font-weight: normal;
+	border-bottom: 1px solid #666;
+}
+
+h2, h3, h4, p {
+	margin-top: 1em;
+}
+
+ul, ol {
+	margin-top: 0.5em;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+h2 {
+	font-size: 1.5em;
+	border-bottom: 0;
+}
+
+h3 {
+	font-size: 1.2em;
+}
+
+h4 {
+	font-size: 1.1em;
+}
+
+a {
+	color: #224466;
+	text-decoration: none;
+	border-bottom: 1px solid;
+}
+
+h1 a, h2 a, h3 a, h4 a {
+	border-bottom: none;
+}
+
+a:visited {
+	color: #555666;
+}
+
+a:hover,
+a:focus {
+	color: #224466;
+	background-color: #E4F2FF;
+}
+
+a:active {
+	color: #224466;
+}
+
+
+.highlight {
+	background-color: #FFFF88;
+}
+
+.error {
+	color: red;
+	border-bottom: 1px dashed red;
+}
+
+code {
+	background-color: #EEEEEE;
+}
+
+ol.code code {
+	white-space: pre;
+	background-color: transparent;
+}
+
+ol.code {
+	line-height: 1;
+	padding: 0.5em;
+	background-color: #EEEEEE;
+	overflow-x: auto;
+}
+
+img.screenshot {
+	display: block;
+	margin: 20px auto;
+}
