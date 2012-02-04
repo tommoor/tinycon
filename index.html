@@ -9,7 +9,7 @@
 			var count = 0;
 			setInterval(function(){
 			
-				if (count++ > 99) count = 0;
+				if (++count > 99) count = 0;
 				Tinycon.setBubble(count);
 				
 			}, 1000);
@@ -19,7 +19,7 @@
 <body>
 	<div id="container">
 		<div id="share">
-			<div class="fb-like" data-href="http://tommoor.github.com/tinycon" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+			<div class="fb-like" data-href="http://tommoor.github.com/tinycon" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div>
 			<g:plusone size="medium"></g:plusone>
 			<a href="http://bufferapp.com/add" class="buffer-add-button" data-count="none">Buffer</a><script type="text/javascript" src="http://static.bufferapp.com/js/button.js"></script>
 		</div>
