@@ -77,6 +77,9 @@ ul, ol {
 
 h1 {
 	font-size: 2em;
+	padding-top: 0;
+	padding-bottom: 20px;
+	border-color: #999;
 }
 
 h2 {
@@ -147,8 +150,15 @@ img.screenshot {
 	margin: 20px auto;
 }
 
-#share {
+ul.share-buttons {
 	position: absolute;
-	top: 10px;
+	top: -15px;
 	right: 0;
+}
+
+ul.share-buttons li {
+	display: inline-block;
+	width: 50px;
+	height: 62px;
+	margin-right: 5px;
 }
