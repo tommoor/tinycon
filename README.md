@@ -4,6 +4,8 @@ A small library for manipulating the favicon, in particular adding alert bubbles
 
 <img src="https://github.com/tommoor/tinycon/blob/master/examples/screenshot.png?raw=true" />
 
+<a href="http://tommoor.github.com/tinycon/">See the Live Demo here.</a>
+
 ## Documentation
 
 Tinycon adds a single object to the global namespace and does not require initialisation. 
