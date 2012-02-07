@@ -3,7 +3,7 @@
  * Tom Moor, http://tommoor.com
  * Copyright (c) 2012 Tom Moor
  * MIT Licensed
- * @version 0.1
+ * @version 0.2
 */
 
 (function(){
@@ -115,7 +115,7 @@
 			context.clearRect(0, 0, 16, 16);
 
 			// draw original favicon
-			context.drawImage(faviconImage, 0, 0);
+			context.drawImage(faviconImage, 0, 0, faviconImage.width, faviconImage.height, 0, 0, 16, 16);
 			
 			// draw bubble over the top
 			if (num > 0) drawBubble(context, num, colour);
