@@ -100,7 +100,7 @@
 	var drawFavicon = function(num, colour) {
 
 		// fallback to updating the browser title if unsupported
-		if (!getCanvas().getContext || (!browser.chrome && !browser.mozilla)) {
+		if (!getCanvas().getContext || browser.safari) {
 			return updateTitle(num);
 		}
 		
@@ -180,7 +180,7 @@
 		context.textBaseline = "top";
 		
 		// unfortunately webkit/mozilla are a pixel different in text positioning
-		context.fillText(num, 15, browser.webkit ? 6 : 7);  
+		context.fillText(num, 15, browser.mozilla ? 7 : 6);  
 	};
 	
 	var refreshFavicon = function(){

@@ -1,15 +1,19 @@
 <html>
 	<head>
-		<link rel="icon" href="/favicon.ico">
+		<link rel="icon" href="favicon.ico">
 		<title>Tinycon</title>
 		
 		<script src="../tinycon.js"></script>
 		<script>
-			var count = 0;
-			
-			setInterval(function(){
-				Tinycon.setBubble(++count);
-			}, 1000);
+			(function(){
+				var count = 0;
+				setInterval(function(){
+
+					if (++count > 99) count = 0;
+					Tinycon.setBubble(count);
+
+				}, 1000);
+			})();
 		</script>
 	</head>
 	<body>
