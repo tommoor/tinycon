@@ -44,7 +44,7 @@
 		
 		var links = document.getElementsByTagName('link');
 		
-		for(var i=0; i < links.length; i++) {
+		for(var i=0, len=links.length; i < len; i++) {
 			if (links[i].getAttribute('rel') === 'icon') {
 				return links[i];
 			}
@@ -58,7 +58,7 @@
 		var links = document.getElementsByTagName('link');
 		var head = document.getElementsByTagName('head')[0];
 		
-		for(var i=0; i < links.length; i++) {
+		for(var i=0, len=links.length; i < len; i++) {
 			if (links[i].getAttribute('rel') === 'icon') {
 				head.removeChild(links[i]);
 			}
