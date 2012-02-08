@@ -24,7 +24,7 @@
 		fallback: true
 	};
 	
-	var ua = (function (browser) {
+	var ua = (function () {
 		var agent = navigator.userAgent.toLowerCase();
 		// New function has access to 'agent' via closure
 		return function (browser) {
