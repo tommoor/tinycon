@@ -158,6 +158,7 @@ ul.share-buttons {
 
 ul.share-buttons li {
 	display: inline-block;
+	overflow: hidden;
 	width: 55px;
 	height: 62px;
 }
