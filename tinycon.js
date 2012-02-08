@@ -24,11 +24,14 @@
 		fallback: true
 	};
 	
-	var ua = function(browser){
+	var ua = (function (browser) {
 		var agent = navigator.userAgent.toLowerCase();
-		return agent.indexOf(browser) !== -1;
-	};
-	
+		// New function has access to 'agent' via closure
+		return function (browser) {
+			return agent.indexOf(browser) !== -1;
+		};
+	}());
+
 	var browser = {
 		chrome: ua('chrome'),
 		webkit: ua('chrome') || ua('safari'),
