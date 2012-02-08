@@ -35,6 +35,14 @@ Tinycon can take a range of options to customise the look
         });
 
 
+## License / Credits
+
+Tinycon is released under the MIT license. It is simple and easy to understand and places almost no restrictions on what you can do with Tinycon.
+[More Information](http://en.wikipedia.org/wiki/MIT_License)
+
+Tinycon was inspired by [Notificon](https://github.com/makeable/Notificon)
+
+
 ## Download
 
 Releases are available for download from
