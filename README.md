@@ -34,6 +34,12 @@ Tinycon can take a range of options to customise the look
 			fallback: true
         });
 
+## Browser Support
+
+* Chrome 16+
+* Firefox 9+
+* Opera 11+
+
 
 ## License / Credits
 
