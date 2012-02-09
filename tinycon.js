@@ -24,7 +24,7 @@
 		fallback: true
 	};
 	
-	var ua = (function (browser) {
+	var ua = (function () {
 		var agent = navigator.userAgent.toLowerCase();
 		// New function has access to 'agent' via closure
 		return function (browser) {
@@ -42,9 +42,10 @@
 	// private
 	var getFaviconTag = function(){
 		
-		var links = document.getElementsByTagName('link');
+		var links = document.getElementsByTagName('link'),
+			i = links.length;
 		
-		for(var i=0, len=links.length; i < len; i++) {
+		while (i--) {
 			if (links[i].getAttribute('rel') === 'icon') {
 				return links[i];
 			}
@@ -55,10 +56,11 @@
 	
 	var removeFaviconTag = function(){
 	
-		var links = document.getElementsByTagName('link');
-		var head = document.getElementsByTagName('head')[0];
+		var head = document.getElementsByTagName('head')[0],
+			links = document.getElementsByTagName('link'),
+			i = links.length
 		
-		for(var i=0, len=links.length; i < len; i++) {
+		while (i--) {
 			if (links[i].getAttribute('rel') === 'icon') {
 				head.removeChild(links[i]);
 			}
