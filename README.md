@@ -36,9 +36,16 @@ Tinycon can take a range of options to customise the look
 
 ## Browser Support
 
+Tinycon has been tested to work completely in the following browsers, however it may be supported in older versions.
+
 * Chrome 15+
 * Firefox 9+
 * Opera 11+
+
+Degrades to title update:
+
+* Internet Explorer 9
+* Safari 5
 
 
 ## License / Credits
