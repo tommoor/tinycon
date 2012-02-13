@@ -36,7 +36,7 @@ Tinycon can take a range of options to customise the look
 
 ## Browser Support
 
-* Chrome 16+
+* Chrome 15+
 * Firefox 9+
 * Opera 11+
 
