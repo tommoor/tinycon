@@ -3,7 +3,7 @@
  * Tom Moor, http://tommoor.com
  * Copyright (c) 2012 Tom Moor
  * MIT Licensed
- * @version 0.2.1
+ * @version 0.2.4
 */
 
 (function(){
@@ -103,7 +103,7 @@
 	var drawFavicon = function(num, colour) {
 
 		// fallback to updating the browser title if unsupported
-		if (!getCanvas().getContext || browser.safari) {
+		if (!getCanvas().getContext || browser.safari || options.fallback === 'force') {
 			return updateTitle(num);
 		}
 		
