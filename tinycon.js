@@ -112,6 +112,7 @@
 		var num = num || 0;
 		
 		faviconImage = new Image();
+		faviconImage.crossOrigin = 'anonymous';
 		faviconImage.onload = function() {
 			
 			// clear canvas  
