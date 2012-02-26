@@ -59,7 +59,8 @@
 		var head = document.getElementsByTagName('head')[0];
 		
 		for(var i=0, len=links.length; i < len; i++) {
-			if (links[i].getAttribute('rel') === 'icon') {
+			var exists = (typeof(links[i]) !== 'undefined');
+			if (exists && links[i].getAttribute('rel') === 'icon') {
 				head.removeChild(links[i]);
 			}
 		}
