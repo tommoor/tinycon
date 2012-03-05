@@ -1,4 +1,4 @@
-/*
+/*!
  * Tinycon - A small library for manipulating the Favicon
  * Tom Moor, http://tommoor.com
  * Copyright (c) 2012 Tom Moor
