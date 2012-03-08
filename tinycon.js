@@ -7,11 +7,12 @@
 */
 
 (function(){
-	
+
 	var Tinycon = {};
 	var currentFavicon = null;
 	var originalFavicon = null;
 	var originalTitle = document.title;
+	var titleRegEx = new RegExp('^\\(\\d+\\) ');
 	var faviconImage = null;
 	var canvas = null;
 	var options = {};
@@ -21,9 +22,10 @@
 		font: '10px arial',
 		colour: '#ffffff',
 		background: '#F03D25',
-		fallback: true
+		fallback: true,
+		fallbackMethod: 'static'
 	};
-	
+
 	var ua = (function () {
 		var agent = navigator.userAgent.toLowerCase();
 		// New function has access to 'agent' via closure
@@ -38,35 +40,35 @@
 		safari: ua('safari') && !ua('chrome'),
 		mozilla: ua('mozilla') && !ua('chrome') && !ua('safari')
 	};
-	
+
 	// private
 	var getFaviconTag = function(){
-		
+
 		var links = document.getElementsByTagName('link');
-		
+
 		for(var i=0, len=links.length; i < len; i++) {
 			if ((links[i].getAttribute('rel') || '').match(/\bicon\b/)) {
 				return links[i];
 			}
 		}
-		
+
 		return false;
 	};
-	
+
 	var removeFaviconTag = function(){
-	
+
 		var links = document.getElementsByTagName('link');
 		var head = document.getElementsByTagName('head')[0];
-		
+
 		for(var i=0, len=links.length; i < len; i++) {
 			if (links[i].getAttribute('rel') === 'icon') {
 				head.removeChild(links[i]);
 			}
 		}
 	};
-	
+
 	var getCurrentFavicon = function(){
-		
+
 		if (!originalFavicon || !currentFavicon) {
 			var tag = getFaviconTag();
 			originalFavicon = currentFavicon = tag ? tag.getAttribute('href') : '/favicon.ico';
@@ -74,76 +76,77 @@
 
 		return currentFavicon;
 	};
-	
+
 	var getCanvas = function (){
-		
+
 		if (!canvas) {
 			canvas = document.createElement("canvas");
 			canvas.width = 16;
 			canvas.height = 16;
 		}
-		
+
 		return canvas;
 	};
-	
+
 	var setFaviconTag = function(url){
 		removeFaviconTag();
-		
+
 		var link = document.createElement('link');
 		link.type = 'image/x-icon';
 		link.rel = 'icon';
 		link.href = url;
 		document.getElementsByTagName('head')[0].appendChild(link);
 	};
-	
+
 	var log = function(message){
 		if (window.console) window.console.log(message);
 	};
-	
+
 	var drawFavicon = function(num, colour) {
 
 		// fallback to updating the browser title if unsupported
 		if (!getCanvas().getContext || browser.safari || options.fallback === 'force') {
 			return updateTitle(num);
 		}
-		
+
 		var context = getCanvas().getContext("2d");
 		var colour = colour || '#000000';
 		var num = num || 0;
-		
+
 		faviconImage = new Image();
 		faviconImage.crossOrigin = 'anonymous';
 		faviconImage.onload = function() {
-			
-			// clear canvas  
+
+			// clear canvas
 			context.clearRect(0, 0, 16, 16);
 
 			// draw original favicon
 			context.drawImage(faviconImage, 0, 0, faviconImage.width, faviconImage.height, 0, 0, 16, 16);
-			
+
 			// draw bubble over the top
 			if (num > 0) drawBubble(context, num, colour);
-			
+
 			// refresh tag in page
 			refreshFavicon();
 		};
-		
+
 		faviconImage.src = getCurrentFavicon();
 	};
-	
+
 	var updateTitle = function(num) {
-		
-		if (options.fallback) {
-			if (num > 0) {
-				document.title = '('+num+') ' + originalTitle;
-			} else {
-				document.title = originalTitle;
-			}
-		}
+        if (options.fallback) {
+            var numText = num > 0 ? '('+num+') ' : '';
+            if (options.fallbackMethod === 'static') {
+                document.title = numText + originalTitle;
+            } else if (options.fallbackMethod === 'dynamic') {
+                titleSplit = document.title.split(titleRegEx);
+                document.title = numText + titleSplit.slice(-1);
+            }
+        }
 	};
-	
+
 	var drawBubble = function(context, num, colour) {
-		
+
 		// bubble needs to be larger for double digits
 		var len = (num+"").length-1;
 		var width = options.width + (6*len);
@@ -155,75 +158,75 @@
 		context.fillStyle = options.background;
 		context.strokeStyle = options.background;
 		context.lineWidth = 1;
-		
+
 		// bubble
 		context.fillRect(w,h,width-1,options.height);
-		
+
 		// rounded left
 		context.beginPath();
 		context.moveTo(w-0.5,h+1);
 		context.lineTo(w-0.5,15);
 		context.stroke();
-		
+
 		// rounded right
 		context.beginPath();
 		context.moveTo(15.5,h+1);
 		context.lineTo(15.5,15);
 		context.stroke();
-		
+
 		// bottom shadow
 		context.beginPath();
 		context.strokeStyle = "rgba(0,0,0,0.3)";
 		context.moveTo(w,16);
 		context.lineTo(15,16);
 		context.stroke();
-		
+
 		// number
 		context.fillStyle = options.colour;
 		context.textAlign = "right";
 		context.textBaseline = "top";
-		
+
 		// unfortunately webkit/mozilla are a pixel different in text positioning
-		context.fillText(num, 15, browser.mozilla ? 7 : 6);  
+		context.fillText(num, 15, browser.mozilla ? 7 : 6);
 	};
-	
+
 	var refreshFavicon = function(){
 		// check support
 		if (!getCanvas().getContext) return;
-		
+
 		setFaviconTag(getCanvas().toDataURL());
 	};
-	
-	
+
+
 	// public
 	Tinycon.setOptions = function(custom){
 		options = {};
-		
+
 		for(var i in defaults){
 			options[i] = custom[i] ? custom[i] : defaults[i];
 		}
 		return this;
 	};
-	
+
 	Tinycon.setImage = function(url){
 		currentFavicon = url;
 		refreshFavicon();
 		return this;
 	};
-	
+
 	Tinycon.setBubble = function(num, colour){
-		
+
 		// validate
 		if(isNaN(num)) return log('Bubble must be a number');
-		
+
 		drawFavicon(num, colour);
 		return this;
 	};
-	
+
 	Tinycon.reset = function(){
 		Tinycon.setImage(originalFavicon);
 	};
-	
+
 	Tinycon.setOptions(defaults);
 	window.Tinycon = Tinycon;
 })();
