@@ -134,15 +134,16 @@
 	};
 
 	var updateTitle = function(num) {
-        if (options.fallback) {
-            var numText = num > 0 ? '('+num+') ' : '';
-            if (options.fallbackMethod === 'static') {
-                document.title = numText + originalTitle;
-            } else if (options.fallbackMethod === 'dynamic') {
-                titleSplit = document.title.split(titleRegEx);
-                document.title = numText + titleSplit.slice(-1);
+            if (options.fallback) {
+                var titleSplit,
+                    numText = num > 0 ? '('+num+') ' : '';
+                if (options.fallbackMethod === 'static') {
+                    document.title = numText + originalTitle;
+                } else if (options.fallbackMethod === 'dynamic') {
+                    titleSplit = document.title.split(titleRegEx);
+                    document.title = numText + titleSplit.slice(-1);
+                }
             }
-        }
 	};
 
 	var drawBubble = function(context, num, colour) {
