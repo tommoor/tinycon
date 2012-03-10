@@ -3,7 +3,7 @@
  * Tom Moor, http://tommoor.com
  * Copyright (c) 2012 Tom Moor
  * MIT Licensed
- * @version 0.2.4
+ * @version 0.2.5
 */
 
 (function(){
@@ -39,7 +39,7 @@
 		mozilla: ua('mozilla') && !ua('chrome') && !ua('safari')
 	};
 	
-	// private
+	// private methods
 	var getFaviconTag = function(){
 		
 		var links = document.getElementsByTagName('link');
@@ -111,9 +111,9 @@
 		var context = getCanvas().getContext("2d");
 		var colour = colour || '#000000';
 		var num = num || 0;
+		var src = getCurrentFavicon();
 		
 		faviconImage = new Image();
-		faviconImage.crossOrigin = 'anonymous';
 		faviconImage.onload = function() {
 			
 			// clear canvas  
@@ -129,7 +129,13 @@
 			refreshFavicon();
 		};
 		
-		faviconImage.src = getCurrentFavicon();
+		// allow cross origin resource requests if the image is not a data:uri
+		// as detailed here: https://github.com/mrdoob/three.js/issues/1305
+		if (!src.match(/^data/)) {
+			faviconImage.crossOrigin = 'anonymous';
+		}
+		
+		faviconImage.src = src;
 	};
 	
 	var updateTitle = function(num) {
@@ -196,7 +202,7 @@
 	};
 	
 	
-	// public
+	// public methods
 	Tinycon.setOptions = function(custom){
 		options = {};
 		
