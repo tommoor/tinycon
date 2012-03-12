@@ -221,7 +221,7 @@
 	Tinycon.setBubble = function(num, colour){
 		
 		// validate
-		if(isNaN(num)) return log('Bubble must be a number');
+		if(isNaN(parseFloat(num)) || !isFinite(num)) return log('Bubble must be a number');
 		
 		drawFavicon(num, colour);
 		return this;
