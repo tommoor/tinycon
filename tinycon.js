@@ -206,8 +206,8 @@
 	Tinycon.setOptions = function(custom){
 		options = {};
 		
-		for(var i in defaults){
-			options[i] = custom[i] ? custom[i] : defaults[i];
+		for(var key in defaults){
+			options[key] = custom.hasOwnProperty(key) ? custom[key] : defaults[key];
 		}
 		return this;
 	};
@@ -221,7 +221,7 @@
 	Tinycon.setBubble = function(num, colour){
 		
 		// validate
-		if(isNaN(num)) return log('Bubble must be a number');
+		if(isNaN(parseFloat(num)) || !isFinite(num)) return log('Bubble must be a number');
 		
 		drawFavicon(num, colour);
 		return this;
