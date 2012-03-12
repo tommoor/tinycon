@@ -206,8 +206,8 @@
 	Tinycon.setOptions = function(custom){
 		options = {};
 		
-		for(var i in defaults){
-			options[i] = custom[i] ? custom[i] : defaults[i];
+		for(var key in defaults){
+			options[key] = custom.hasOwnProperty(key) ? custom[key] : defaults[key];
 		}
 		return this;
 	};
