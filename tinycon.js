@@ -33,6 +33,7 @@
 	}());
 
 	var browser = {
+		ie: ua('msie'),
 		chrome: ua('chrome'),
 		webkit: ua('chrome') || ua('safari'),
 		safari: ua('safari') && !ua('chrome'),
@@ -104,7 +105,7 @@
 	var drawFavicon = function(num, colour) {
 
 		// fallback to updating the browser title if unsupported
-		if (!getCanvas().getContext || browser.safari || options.fallback === 'force') {
+		if (!getCanvas().getContext || browser.ie || browser.safari || options.fallback === 'force') {
 			return updateTitle(num);
 		}
 		
