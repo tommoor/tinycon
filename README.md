@@ -12,7 +12,9 @@ Tinycon adds a single object to the global namespace and does not require initia
 
 ### Basic Usage
 
-        Tinycon.setBubble(6);
+```javascript
+Tinycon.setBubble(6);
+```
 
 ### Options
 
@@ -25,14 +27,16 @@ Tinycon can take a range of options to customise the look
 * background: the alert bubble background colour
 * fallback: should we fallback to a number in brackets for browsers that don't support canvas/dynamic favicons? Boolean, or use the string 'force' to ensure a title update even in supported browsers. 
 
-        Tinycon.setOptions({
-          	width: 7,
-			height: 9,
-			font: '10px arial',
-			colour: '#ffffff',
-			background: '#549A2F',
-			fallback: true
-        });
+```javascript
+Tinycon.setOptions({
+	width: 7,
+	height: 9,
+	font: '10px arial',
+	colour: '#ffffff',
+	background: '#549A2F',
+	fallback: true
+});
+```
 
 ## Browser Support
 
