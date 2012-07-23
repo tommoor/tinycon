@@ -73,8 +73,7 @@
 		if (!originalFavicon || !currentFavicon) {
 			if (options.originalFavicon) {
 				originalFavicon = currentFavicon = options.originalFavicon;
-			}
-			else {
+			} else {
 				var tag = getFaviconTag();
 				originalFavicon = currentFavicon = tag ? tag.getAttribute('href') : '/favicon.ico';
 			}
