@@ -21,7 +21,8 @@
 		font: '10px arial',
 		colour: '#ffffff',
 		background: '#F03D25',
-		fallback: true
+		fallback: true,
+		originalFavicon: null,
 	};
 	
 	var ua = (function () {
@@ -70,8 +71,13 @@
 	var getCurrentFavicon = function(){
 
 		if (!originalFavicon || !currentFavicon) {
-			var tag = getFaviconTag();
-			originalFavicon = currentFavicon = tag ? tag.getAttribute('href') : '/favicon.ico';
+			if (options.originalFavicon) {
+				originalFavicon = currentFavicon = options.originalFavicon;
+			}
+			else {
+				var tag = getFaviconTag();
+				originalFavicon = currentFavicon = tag ? tag.getAttribute('href') : '/favicon.ico';
+			}
 		}
 
 		return currentFavicon;
