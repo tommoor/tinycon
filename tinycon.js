@@ -102,16 +102,16 @@
 		if (window.console) window.console.log(message);
 	};
 	
-	var drawFavicon = function(num, colour) {
+	var drawFavicon = function(label, colour) {
 
 		// fallback to updating the browser title if unsupported
 		if (!getCanvas().getContext || browser.ie || browser.safari || options.fallback === 'force') {
-			return updateTitle(num);
+			return updateTitle(label);
 		}
 		
 		var context = getCanvas().getContext("2d");
 		var colour = colour || '#000000';
-		var num = num || 0;
+		var label = label || '';
 		var src = getCurrentFavicon();
 		
 		faviconImage = new Image();
@@ -124,7 +124,7 @@
 			context.drawImage(faviconImage, 0, 0, faviconImage.width, faviconImage.height, 0, 0, 16, 16);
 			
 			// draw bubble over the top
-			if (num > 0) drawBubble(context, num, colour);
+			if (label.length > 0) drawBubble(context, label, colour);
 			
 			// refresh tag in page
 			refreshFavicon();
@@ -139,21 +139,21 @@
 		faviconImage.src = src;
 	};
 	
-	var updateTitle = function(num) {
+	var updateTitle = function(label) {
 		
 		if (options.fallback) {
-			if (num > 0) {
-				document.title = '('+num+') ' + originalTitle;
+			if (label.length > 0) {
+				document.title = '('+label+') ' + originalTitle;
 			} else {
 				document.title = originalTitle;
 			}
 		}
 	};
 	
-	var drawBubble = function(context, num, colour) {
+	var drawBubble = function(context, label, colour) {
 		
 		// bubble needs to be larger for double digits
-		var len = (num+"").length-1;
+		var len = label.length-1;
 		var width = options.width + (6*len);
 		var w = 16-width;
 		var h = 16-options.height;
@@ -186,13 +186,13 @@
 		context.lineTo(15,16);
 		context.stroke();
 		
-		// number
+		// label
 		context.fillStyle = options.colour;
 		context.textAlign = "right";
 		context.textBaseline = "top";
 		
 		// unfortunately webkit/mozilla are a pixel different in text positioning
-		context.fillText(num, 15, browser.mozilla ? 7 : 6);  
+		context.fillText(label, 15, browser.mozilla ? 7 : 6);  
 	};
 	
 	var refreshFavicon = function(){
@@ -219,12 +219,9 @@
 		return this;
 	};
 	
-	Tinycon.setBubble = function(num, colour){
+	Tinycon.setBubble = function(label, colour){
 		
-		// validate
-		if(isNaN(parseFloat(num)) || !isFinite(num)) return log('Bubble must be a number');
-		
-		drawFavicon(num, colour);
+		drawFavicon(label + "", colour);
 		return this;
 	};
 	
