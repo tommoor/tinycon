@@ -111,7 +111,6 @@
 		
 		var context = getCanvas().getContext("2d");
 		var colour = colour || '#000000';
-		var label = label || '';
 		var src = getCurrentFavicon();
 		
 		faviconImage = new Image();
@@ -124,7 +123,7 @@
 			context.drawImage(faviconImage, 0, 0, faviconImage.width, faviconImage.height, 0, 0, 16, 16);
 			
 			// draw bubble over the top
-			if (label.length > 0) drawBubble(context, label, colour);
+			if ((label + '').length > 0) drawBubble(context, label, colour);
 			
 			// refresh tag in page
 			refreshFavicon();
@@ -142,8 +141,8 @@
 	var updateTitle = function(label) {
 		
 		if (options.fallback) {
-			if (label.length > 0) {
-				document.title = '('+label+') ' + originalTitle;
+			if ((label + '').length > 0) {
+				document.title = '(' + label + ') ' + originalTitle;
 			} else {
 				document.title = originalTitle;
 			}
@@ -151,9 +150,22 @@
 	};
 	
 	var drawBubble = function(context, label, colour) {
+		// automatic abbreviation for long (>2 digits) numbers
+		if(typeof label == 'number' && label > 99) {
+			var metricPrefixes = [
+				['G', 1000000000],
+				['M',    1000000],
+				['k',       1000]
+			];
+			for(var i = 0; i < metricPrefixes.length; ++i)
+				if(label >= metricPrefixes[i][1]) {
+					label = round(label / metricPrefixes[i][1]) + metricPrefixes[i][0];
+					break;
+				}
+		}
 		
 		// bubble needs to be larger for double digits
-		var len = label.length-1;
+		var len = (label + '').length-1;
 		var width = options.width + (6*len);
 		var w = 16-width;
 		var h = 16-options.height;
@@ -202,6 +214,10 @@
 		setFaviconTag(getCanvas().toDataURL());
 	};
 	
+	var round = function (value, precision) {
+		var number = new Number(value);
+		return number.toFixed(precision);
+	};
 	
 	// public methods
 	Tinycon.setOptions = function(custom){
@@ -220,7 +236,6 @@
 	};
 	
 	Tinycon.setBubble = function(label, colour){
-		label = (label || "") + "";
 		drawFavicon(label, colour);
 		return this;
 	};
