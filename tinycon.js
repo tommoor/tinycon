@@ -235,7 +235,8 @@
 		return this;
 	};
 	
-	Tinycon.setBubble = function(label, colour){
+	Tinycon.setBubble = function(label, colour) {
+		label = label || '';
 		drawFavicon(label, colour);
 		return this;
 	};
