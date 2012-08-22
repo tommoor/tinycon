@@ -102,10 +102,14 @@
 		if (window.console) window.console.log(message);
 	};
 	
+	var needsFallback = function() {
+		return (!getCanvas().getContext || browser.ie || browser.safari || options.fallback === 'force');
+	};
+	
 	var drawFavicon = function(num, colour) {
 
 		// fallback to updating the browser title if unsupported
-		if (!getCanvas().getContext || browser.ie || browser.safari || options.fallback === 'force') {
+		if (needsFallback()) {
 			return updateTitle(num);
 		}
 		
@@ -231,6 +235,8 @@
 	Tinycon.reset = function(){
 		Tinycon.setImage(originalFavicon);
 	};
+	
+	Tinycon.needsFallback = needsFallback;
 	
 	Tinycon.setOptions(defaults);
 	window.Tinycon = Tinycon;
