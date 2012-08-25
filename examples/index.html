@@ -8,8 +8,7 @@
 			(function(){
 				var count = 0;
 				setInterval(function(){
-
-					if (++count > 99) count = 0;
+					++count;
 					Tinycon.setBubble(count);
 
 				}, 1000);

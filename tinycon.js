@@ -21,7 +21,8 @@
 		font: '10px arial',
 		colour: '#ffffff',
 		background: '#F03D25',
-		fallback: true
+		fallback: true,
+		abbreviate: true
 	};
 	
 	var ua = (function () {
@@ -150,18 +151,10 @@
 	};
 	
 	var drawBubble = function(context, label, colour) {
+		
 		// automatic abbreviation for long (>2 digits) numbers
-		if(typeof label == 'number' && label > 99) {
-			var metricPrefixes = [
-				['G', 1000000000],
-				['M',    1000000],
-				['k',       1000]
-			];
-			for(var i = 0; i < metricPrefixes.length; ++i)
-				if(label >= metricPrefixes[i][1]) {
-					label = round(label / metricPrefixes[i][1]) + metricPrefixes[i][0];
-					break;
-				}
+		if (typeof label == 'number' && label > 99 && options.abbreviate) {
+			label = abbreviateNumber(label);
 		}
 		
 		// bubble needs to be larger for double digits
@@ -212,6 +205,23 @@
 		if (!getCanvas().getContext) return;
 		
 		setFaviconTag(getCanvas().toDataURL());
+	};
+	
+	var abbreviateNumber = function(label) {
+		var metricPrefixes = [
+			['G', 1000000000],
+			['M',    1000000],
+			['k',       1000]
+		];
+		
+		for(var i = 0; i < metricPrefixes.length; ++i) {
+			if (label >= metricPrefixes[i][1]) {
+				label = round(label / metricPrefixes[i][1]) + metricPrefixes[i][0];
+				break;
+			}
+		}
+		
+		return label;
 	};
 	
 	var round = function (value, precision) {
