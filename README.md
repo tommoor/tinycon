@@ -25,7 +25,8 @@ Tinycon can take a range of options to customise the look
 * font: a css string to use for the fontface (recommended to leave this)
 * colour: the foreground font colour
 * background: the alert bubble background colour
-* fallback: should we fallback to a number in brackets for browsers that don't support canvas/dynamic favicons? Boolean, or use the string 'force' to ensure a title update even in supported browsers. 
+* fallback: should we fallback to a number in brackets for browsers that don't support canvas/dynamic favicons? Boolean, or use the string 'force' to ensure a title update even in supported browsers.
+* abbreviate: should tinycon shrink large numbers such as 1000 to an abbreviated version (1k). Boolean, defaults to true
 
 ```javascript
 Tinycon.setOptions({
