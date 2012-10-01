@@ -62,7 +62,7 @@
 		
 		for(var i=0, len=links.length; i < len; i++) {
 			var exists = (typeof(links[i]) !== 'undefined');
-			if (exists && links[i].getAttribute('rel') === 'icon') {
+			if (exists && (links[i].getAttribute('rel') || '').match(/\bicon\b/)) {
 				head.removeChild(links[i]);
 			}
 		}
