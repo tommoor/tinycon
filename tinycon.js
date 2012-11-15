@@ -3,7 +3,7 @@
  * Tom Moor, http://tommoor.com
  * Copyright (c) 2012 Tom Moor
  * MIT Licensed
- * @version 0.3
+ * @version 0.5
 */
 
 (function(){
@@ -252,8 +252,8 @@
 	};
 
 	Tinycon.reset = function(){
-        setFaviconTag(originalFavicon);
-    };
+		setFaviconTag(originalFavicon);
+	};
 
 	Tinycon.setOptions(defaults);
 	window.Tinycon = Tinycon;
