@@ -257,4 +257,9 @@
 
 	Tinycon.setOptions(defaults);
 	window.Tinycon = Tinycon;
+
+	if(typeof define === 'function' && define.amd) {
+		define(Tinycon);
+	}
+
 })();
