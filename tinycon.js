@@ -4,7 +4,7 @@
  * Copyright (c) 2012 Tom Moor
  * MIT Licensed
  * @version 0.5
-*/
+ */
 
 (function(){
 
@@ -15,10 +15,12 @@
 	var faviconImage = null;
 	var canvas = null;
 	var options = {};
+	var r = window.devicePixelRatio || 1;
+	var size = 16 * r;
 	var defaults = {
 		width: 7,
 		height: 9,
-		font: '10px arial',
+		font: 10 * r + 'px arial',
 		colour: '#ffffff',
 		background: '#F03D25',
 		fallback: true,
@@ -82,8 +84,8 @@
 
 		if (!canvas) {
 			canvas = document.createElement("canvas");
-			canvas.width = 16;
-			canvas.height = 16;
+			canvas.width = size;
+			canvas.height = size;
 		}
 
 		return canvas;
@@ -114,14 +116,16 @@
 		var colour = colour || '#000000';
 		var src = getCurrentFavicon();
 
+		var clipped = browser.mozilla ? 16 : size;
+
 		faviconImage = new Image();
 		faviconImage.onload = function() {
 
 			// clear canvas
-			context.clearRect(0, 0, 16, 16);
+			context.clearRect(0, 0, size, size);
 
 			// draw original favicon
-			context.drawImage(faviconImage, 0, 0, faviconImage.width, faviconImage.height, 0, 0, 16, 16);
+			context.drawImage(faviconImage, 0, 0, clipped, clipped, 0, 0, size, size);
 
 			// draw bubble over the top
 			if ((label + '').length > 0) drawBubble(context, label, colour);
@@ -159,36 +163,40 @@
 
 		// bubble needs to be larger for double digits
 		var len = (label + '').length-1;
-		var width = options.width + (6*len);
-		var w = 16-width;
-		var h = 16-options.height;
+
+		var width = options.width * r + (6 * r * len),
+			height = options.height * r;
+
+		var top = size - height,
+            left = size - width - r,
+            bottom = 16 * r,
+            right = 16 * r,
+            radius = 2 * r;
 
 		// webkit seems to render fonts lighter than firefox
 		context.font = (browser.webkit ? 'bold ' : '') + options.font;
 		context.fillStyle = options.background;
 		context.strokeStyle = options.background;
-		context.lineWidth = 1;
+		context.lineWidth = r;
 
 		// bubble
-		context.fillRect(w,h,width-1,options.height);
-
-		// rounded left
 		context.beginPath();
-		context.moveTo(w-0.5,h+1);
-		context.lineTo(w-0.5,15);
-		context.stroke();
-
-		// rounded right
-		context.beginPath();
-		context.moveTo(15.5,h+1);
-		context.lineTo(15.5,15);
-		context.stroke();
+        context.moveTo(left + radius, top);
+		context.quadraticCurveTo(left, top, left, top + radius);
+		context.lineTo(left, bottom - radius);
+        context.quadraticCurveTo(left, bottom, left + radius, bottom);
+        context.lineTo(right - radius, bottom);
+        context.quadraticCurveTo(right, bottom, right, bottom - radius);
+        context.lineTo(right, top + radius);
+        context.quadraticCurveTo(right, top, right - radius, top);
+        context.closePath();
+        context.fill();
 
 		// bottom shadow
 		context.beginPath();
 		context.strokeStyle = "rgba(0,0,0,0.3)";
-		context.moveTo(w,16);
-		context.lineTo(15,16);
+		context.moveTo(left + radius / 2.0, bottom);
+		context.lineTo(right - radius / 2.0, bottom);
 		context.stroke();
 
 		// label
@@ -197,7 +205,7 @@
 		context.textBaseline = "top";
 
 		// unfortunately webkit/mozilla are a pixel different in text positioning
-		context.fillText(label, 15, browser.mozilla ? 7 : 6);
+		context.fillText(label, r === 2 ? 29 : 15, browser.mozilla ? 7*r : 6*r);
 	};
 
 	var refreshFavicon = function(){
