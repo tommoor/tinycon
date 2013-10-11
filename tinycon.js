@@ -122,9 +122,8 @@
 			// clear canvas
 			context.clearRect(0, 0, size, size);
 
-			// draw original favicon fallback to 16x16, then overwrite with 32x32 if possible
-			context.drawImage(faviconImage, 0, 0, 16, 16, 0, 0, size, size);
-			if (!browser.mozilla) context.drawImage(faviconImage, 0, 0, 32, 32, 0, 0, size, size);
+			// draw the favicon
+			context.drawImage(faviconImage, 0, 0, faviconImage.width, faviconImage.height, 0, 0, size, size);
 
 			// draw bubble over the top
 			if ((label + '').length > 0) drawBubble(context, label, colour);
