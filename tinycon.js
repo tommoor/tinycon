@@ -24,6 +24,7 @@
 		colour: '#ffffff',
 		background: '#F03D25',
 		fallback: true,
+		crossOrigin: true,
 		abbreviate: true
 	};
 
@@ -134,7 +135,7 @@
 
 		// allow cross origin resource requests if the image is not a data:uri
 		// as detailed here: https://github.com/mrdoob/three.js/issues/1305
-		if (!src.match(/^data/)) {
+		if (!src.match(/^data/) && options.crossOrigin) {
 			faviconImage.crossOrigin = 'anonymous';
 		}
 
