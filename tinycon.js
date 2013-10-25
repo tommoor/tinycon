@@ -6,7 +6,8 @@
  * @version 0.6.1
  */
 
-(function(){
+(function(global){
+	global = global || window;
 
 	var Tinycon = {};
 	var currentFavicon = null;
@@ -263,5 +264,5 @@
 	};
 
 	Tinycon.setOptions(defaults);
-	window.Tinycon = Tinycon;
+	global.Tinycon = Tinycon;
 })();
