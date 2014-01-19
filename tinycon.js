@@ -2,7 +2,7 @@
  * Tinycon - A small library for manipulating the Favicon
  * Tom Moor, http://tommoor.com
  * Copyright (c) 2012 Tom Moor
- * MIT Licensed
+ * @license MIT Licensed
  * @version 0.6.1
  */
 
