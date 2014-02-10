@@ -3,7 +3,7 @@
  * Tom Moor, http://tommoor.com
  * Copyright (c) 2012 Tom Moor
  * @license MIT Licensed
- * @version 0.6.1
+ * @version 0.6.2
  */
 
 (function(){
