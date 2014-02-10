@@ -39,6 +39,29 @@ Tinycon.setOptions({
 });
 ```
 
+### AMD support
+
+Tinycon can also be used as an asynchronous module.
+
+```javascript
+require([
+	'tinycon.js'
+], function (T) {
+
+	T.setOptions({
+		width: 7,
+		height: 9,
+		font: '10px arial',
+		colour: '#ffffff',
+		background: '#549A2F',
+		fallback: true
+	});
+
+	T.setBubble(7);
+
+});
+```
+
 ## Browser Support
 
 Tinycon has been tested to work completely in the following browsers. Older versions may be supported, but haven't been tested:
