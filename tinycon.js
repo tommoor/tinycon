@@ -9,6 +9,8 @@
 (function(){
 
 	var Tinycon = {};
+	var currentLabel = null;
+	var currentColour = null;
 	var currentFavicon = null;
 	var originalFavicon = null;
 	var faviconImage = null;
@@ -106,6 +108,12 @@
 	};
 
 	var drawFavicon = function(label, colour) {
+		if (currentLabel === label && currentColour === colour) {
+			// Same label and color, return.
+			return;
+		}
+		currentLabel = label;
+		currentColour = colour;
 
 		// fallback to updating the browser title if unsupported
 		if (!getCanvas().getContext || browser.ie || browser.safari || options.fallback === 'force') {
