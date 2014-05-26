@@ -254,6 +254,7 @@
 	};
 
 	Tinycon.setImage = function(url){
+		getCurrentFavicon();
 		currentFavicon = url;
 		refreshFavicon();
 		return this;
@@ -266,6 +267,7 @@
 	};
 
 	Tinycon.reset = function(){
+		getCurrentFavicon();
 		setFaviconTag(originalFavicon);
 	};
 
