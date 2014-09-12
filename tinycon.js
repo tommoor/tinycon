@@ -14,7 +14,8 @@
   var faviconImage = null;
   var canvas = null;
   var options = {};
-  var r = window.devicePixelRatio || 1;
+  // Chrome browsers with nonstandard zoom report fractional devicePixelRatio.
+  var r = Math.ceil(window.devicePixelRatio) || 1;
   var size = 16 * r;
   var defaults = {
     width: 7,
@@ -192,16 +193,16 @@
 
     // bubble
     context.beginPath();
-        context.moveTo(left + radius, top);
+    context.moveTo(left + radius, top);
     context.quadraticCurveTo(left, top, left, top + radius);
     context.lineTo(left, bottom - radius);
-        context.quadraticCurveTo(left, bottom, left + radius, bottom);
-        context.lineTo(right - radius, bottom);
-        context.quadraticCurveTo(right, bottom, right, bottom - radius);
-        context.lineTo(right, top + radius);
-        context.quadraticCurveTo(right, top, right - radius, top);
-        context.closePath();
-        context.fill();
+    context.quadraticCurveTo(left, bottom, left + radius, bottom);
+    context.lineTo(right - radius, bottom);
+    context.quadraticCurveTo(right, bottom, right, bottom - radius);
+    context.lineTo(right, top + radius);
+    context.quadraticCurveTo(right, top, right - radius, top);
+    context.closePath();
+    context.fill();
 
     // bottom shadow
     context.beginPath();
