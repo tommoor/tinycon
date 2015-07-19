@@ -92,13 +92,15 @@
 	};
 
 	var setFaviconTag = function(url){
-		removeFaviconTag();
-
-		var link = document.createElement('link');
-		link.type = 'image/x-icon';
-		link.rel = 'icon';
-		link.href = url;
-		document.getElementsByTagName('head')[0].appendChild(link);
+		if(url){
+			removeFaviconTag();
+	
+			var link = document.createElement('link');
+			link.type = 'image/x-icon';
+			link.rel = 'icon';
+			link.href = url;
+			document.getElementsByTagName('head')[0].appendChild(link);
+		}
 	};
 
 	var log = function(message){
