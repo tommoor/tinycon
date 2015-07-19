@@ -48,7 +48,7 @@
 
 		var links = document.getElementsByTagName('link');
 
-		for(var i=0, len=links.length; i < len; i++) {
+		for(var i=links.length; --i>=0;) {
 			if ((links[i].getAttribute('rel') || '').match(/\bicon\b/)) {
 				return links[i];
 			}
@@ -256,6 +256,7 @@
 	};
 
 	Tinycon.setImage = function(url){
+		getCurrentFavicon();
 		currentFavicon = url;
 		refreshFavicon();
 		return this;
@@ -268,6 +269,7 @@
 	};
 
 	Tinycon.reset = function(){
+		getCurrentFavicon();
 		setFaviconTag(originalFavicon);
 	};
 
