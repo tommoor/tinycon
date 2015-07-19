@@ -1,9 +1,9 @@
 /*!
  * Tinycon - A small library for manipulating the Favicon
  * Tom Moor, http://tommoor.com
- * Copyright (c) 2012 Tom Moor
+ * Copyright (c) 2015 Tom Moor
  * @license MIT Licensed
- * @version 0.6.3
+ * @version 0.6.4
  */
 
 (function(){
