@@ -272,10 +272,13 @@
 	};
 
 	Tinycon.setOptions(defaults);
-	window.Tinycon = Tinycon;
 
 	if(typeof define === 'function' && define.amd) {
 		define(Tinycon);
+	} else if (typeof module !== 'undefined') {
+		module.exports = Tinycon;
+	} else {
+		window.Tinycon = Tinycon;
 	}
 
 })();
