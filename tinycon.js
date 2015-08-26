@@ -20,7 +20,7 @@
 		width: 7,
 		height: 9,
 		font: 10 * r + 'px arial',
-		colour: '#ffffff',
+		color: '#ffffff',
 		background: '#F03D25',
 		fallback: true,
 		crossOrigin: true,
@@ -107,7 +107,7 @@
 		if (window.console) window.console.log(message);
 	};
 
-	var drawFavicon = function(label, colour) {
+	var drawFavicon = function(label, color) {
 
 		// fallback to updating the browser title if unsupported
 		if (!getCanvas().getContext || browser.ie || browser.safari || options.fallback === 'force') {
@@ -115,7 +115,7 @@
 		}
 
 		var context = getCanvas().getContext("2d");
-		var colour = colour || '#000000';
+		var color = color || '#000000';
 		var src = getCurrentFavicon();
 
 		faviconImage = document.createElement('img');
@@ -128,7 +128,7 @@
 			context.drawImage(faviconImage, 0, 0, faviconImage.width, faviconImage.height, 0, 0, size, size);
 
 			// draw bubble over the top
-			if ((label + '').length > 0) drawBubble(context, label, colour);
+			if ((label + '').length > 0) drawBubble(context, label, color);
 
 			// refresh tag in page
 			refreshFavicon();
@@ -162,7 +162,7 @@
 		}
 	};
 
-	var drawBubble = function(context, label, colour) {
+	var drawBubble = function(context, label, color) {
 
 		// automatic abbreviation for long (>2 digits) numbers
 		if (typeof label == 'number' && label > 99 && options.abbreviate) {
@@ -208,7 +208,7 @@
 		context.stroke();
 
 		// label
-		context.fillStyle = options.colour;
+		context.fillStyle = options.color;
 		context.textAlign = "right";
 		context.textBaseline = "top";
 
@@ -249,6 +249,10 @@
 	Tinycon.setOptions = function(custom){
 		options = {};
 
+        if (custom.colour) {
+            custom.color = custom.colour;
+        }
+
 		for(var key in defaults){
 			options[key] = custom.hasOwnProperty(key) ? custom[key] : defaults[key];
 		}
@@ -261,9 +265,9 @@
 		return this;
 	};
 
-	Tinycon.setBubble = function(label, colour) {
+	Tinycon.setBubble = function(label, color) {
 		label = label || '';
-		drawFavicon(label, colour);
+		drawFavicon(label, color);
 		return this;
 	};
 
