@@ -9,6 +9,6 @@
     "url": "git://github.com/tommoor/tinycon.git"
   },
   "devDependencies": {
-    "grunt": "~0.4.5",
+    "grunt": "~0.4.5"
   }
 }
