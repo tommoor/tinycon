@@ -271,6 +271,7 @@
 	};
 
 	Tinycon.reset = function(){
+		currentFavicon = originalFavicon;
 		setFaviconTag(originalFavicon);
 	};
 
