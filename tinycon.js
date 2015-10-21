@@ -37,6 +37,7 @@
 
 	var browser = {
 		ie: ua('msie'),
+		ie11: ua('rv'),
 		chrome: ua('chrome'),
 		webkit: ua('chrome') || ua('safari'),
 		safari: ua('safari') && !ua('chrome'),
@@ -110,7 +111,7 @@
 	var drawFavicon = function(label, colour) {
 
 		// fallback to updating the browser title if unsupported
-		if (!getCanvas().getContext || browser.ie || browser.safari || options.fallback === 'force') {
+		if (!getCanvas().getContext || browser.ie || browser.ie11 || browser.safari || options.fallback === 'force') {
 			return updateTitle(label);
 		}
 
