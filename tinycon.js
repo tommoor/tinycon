@@ -14,7 +14,8 @@
 	var faviconImage = null;
 	var canvas = null;
 	var options = {};
-	var r = window.devicePixelRatio || 1;
+	// Chrome browsers with nonstandard zoom report fractional devicePixelRatio.
+	var r = Math.ceil(window.devicePixelRatio) || 1;
 	var size = 16 * r;
 	var defaults = {
 		width: 7,
