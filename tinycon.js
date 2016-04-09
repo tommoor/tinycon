@@ -49,7 +49,7 @@
 		var links = document.getElementsByTagName('link');
 
 		for(var i=0, len=links.length; i < len; i++) {
-			if ((links[i].getAttribute('rel') || '').match(/\bicon\b/)) {
+			if ((links[i].getAttribute('rel') || '').match(/\bicon\b/i)) {
 				return links[i];
 			}
 		}
@@ -64,7 +64,7 @@
 
 		for(var i=0, len=links.length; i < len; i++) {
 			var exists = (typeof(links[i]) !== 'undefined');
-			if (exists && (links[i].getAttribute('rel') || '').match(/\bicon\b/)) {
+			if (exists && (links[i].getAttribute('rel') || '').match(/\bicon\b/i)) {
 				head.removeChild(links[i]);
 			}
 		}
