@@ -1,0 +1,30 @@
+{
+  "name": "tinycon",
+  "description": "A small library for manipulating the favicon, in particular adding alert bubbles and changing images.",
+  "homepage": "http://blog.tommoor.com/tinycon/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tommoor/tinycon.git"
+  },
+  "moduleType": [
+    "globals",
+    "amd"
+  ],
+  "keywords": [
+    "favicon",
+    "notification"
+  ],
+  "main": [
+    "tinycon.js"
+  ],
+  "ignore": [
+    "examples",
+    "Gruntfile.js",
+    ".gitignore",
+    "*.md",
+    "LICENSE",
+    "package.json"
+  ],
+  "private": false,
+  "license": "MIT"
+}
