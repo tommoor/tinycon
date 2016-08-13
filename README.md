@@ -85,6 +85,11 @@ Currently the library degrades to title update:
 * Safari 5
 
 
+## Development
+
+To produce the minified file run `grunt uglify`
+
+
 ## License / Credits
 
 Tinycon is released under the MIT license. It is simple and easy to understand and places almost no restrictions on what you can do with Tinycon.
