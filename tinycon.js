@@ -60,12 +60,11 @@
   var removeFaviconTag = function(){
 
     var links = document.getElementsByTagName('link');
-    var head = document.getElementsByTagName('head')[0];
 
     for(var i=0, len=links.length; i < len; i++) {
       var exists = (typeof(links[i]) !== 'undefined');
       if (exists && (links[i].getAttribute('rel') || '').match(/\bicon\b/i)) {
-        head.removeChild(links[i]);
+        links[i].parentNode.removeChild(links[i]);
       }
     }
   };
