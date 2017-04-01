@@ -1,5 +1,5 @@
 {
-  "name": "@tommoor/tinycon",
+  "name": "tinycon",
   "version": "0.6.7",
   "description": "Add notification bubbles in the favicon",
   "author": "Tom Moor <tom.moor@gmail.com> (http://tommoor.com)",
@@ -14,6 +14,7 @@
     "url": "git://github.com/tommoor/tinycon.git"
   },
   "devDependencies": {
-    "grunt": "~0.4.5"
+    "grunt": "~0.4.5",
+    "grunt-contrib-uglify": "^2.2.1"
   }
 }
