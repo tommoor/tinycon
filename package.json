@@ -1,15 +1,15 @@
 {
   "name": "@tommoor/tinycon",
-  "version": "0.6.6",
+  "version": "0.6.7",
   "description": "Add notification bubbles in the favicon",
   "author": "Tom Moor <tom.moor@gmail.com> (http://tommoor.com)",
   "license": "MIT",
-  "main" : "./tinycon.js",
+  "main": "./tinycon.js",
   "scripts": {
     "build": "grunt uglify",
     "prepublish": "grunt uglify"
   },
-  "repository" : {
+  "repository": {
     "type": "git",
     "url": "git://github.com/tommoor/tinycon.git"
   },
