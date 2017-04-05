@@ -8,15 +8,18 @@ A small library for manipulating the favicon, in particular adding alert bubbles
 
 ## Documentation
 
-Tinycon adds a single object to the global namespace and does not require initialisation.
+Tinycon adds a single object to the global namespace and does not require initialization.
+
 
 ### Installation
 
-There are several versions of Tinycon published on NPM, unfortunately they are not controlled by me and do not track HEAD. The best idea is to install from github
-directly and cut out the middleman!
+Install with your favorite package manager.
 
 ```
-npm install tommoor/tinycon --save
+npm install tinycon --save
+```
+```
+yarn add tinycon
 ```
 
 ### Basic Usage
@@ -27,7 +30,7 @@ Tinycon.setBubble(6);
 
 ### Options
 
-Tinycon can take a range of options to customise the look
+Tinycon can take a range of options to customize the look
 
 * width: the width of the alert bubble
 * height: the height of the alert bubble
