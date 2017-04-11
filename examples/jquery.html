@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<link rel="icon" href="favicon.ico">
+		<title>jQuery.Tinycon</title>
+
+		<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+		<script src="../jquery.tinycon.js"></script>
+		<script>
+			(function(){
+				var count = 0;
+				setInterval(function(){
+
+					if (++count > 99) count = 0;
+					Tinycon.setBubble(count);
+
+				}, 1000);
+			})();
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
