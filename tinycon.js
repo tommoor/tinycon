@@ -127,6 +127,7 @@
       context.clearRect(0, 0, size, size);
 
       // draw the favicon
+      context.imageSmoothingQuality = 'high';
       context.drawImage(faviconImage, 0, 0, faviconImage.width, faviconImage.height, 0, 0, size, size);
 
       // draw bubble over the top
