@@ -60,6 +60,7 @@
   var removeFaviconTag = function(){
 
     var links = document.getElementsByTagName('link');
+    links = Array.prototype.slice.call(links);
 
     for(var i=0, len=links.length; i < len; i++) {
       var exists = (typeof(links[i]) !== 'undefined');
