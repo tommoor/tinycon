@@ -36,6 +36,7 @@
   }());
 
   var browser = {
+    edge: ua('edge'),
     ie: ua('trident'),
     chrome: ua('chrome'),
     webkit: ua('chrome') || ua('safari'),
@@ -112,7 +113,7 @@
   var drawFavicon = function(label, color) {
 
     // fallback to updating the browser title if unsupported
-    if (!getCanvas().getContext || browser.ie || browser.safari || options.fallback === 'force') {
+    if (!getCanvas().getContext || browser.ie || browser.edge || browser.safari || options.fallback === 'force') {
       return updateTitle(label);
     }
 
@@ -152,7 +153,7 @@
       var originalTitle = document.title;
 
       // Strip out the old label if there is one
-      if (originalTitle[0] === '(') {
+      if (originalTitle.charAt(0) === '(') {
         originalTitle = originalTitle.slice(originalTitle.indexOf(' '));
       }
 
