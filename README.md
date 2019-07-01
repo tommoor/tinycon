@@ -82,7 +82,7 @@ Tinycon has been tested to work completely in the following browsers. Older vers
 * Firefox 9+
 * Opera 11+
 
-Currently the library degrades to title update:
+Currently the library degrades to title update in the following browsers:
 
 * Internet Explorer 9
 * Safari 5
