@@ -135,6 +135,7 @@
       // refresh tag in page
       refreshFavicon();
     };
+    faviconImage.onload();
 
     // allow cross origin resource requests if the image is not a data:uri
     // as detailed here: https://github.com/mrdoob/three.js/issues/1305
