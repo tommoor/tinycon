@@ -37,6 +37,7 @@ Tinycon can take a range of options to customize the look
 * font: a css string to use for the fontface (recommended to leave this)
 * color: the foreground font color
 * background: the alert bubble background color
+* path: path to the favicon file (default '/favicon.icon')
 * fallback: should we fallback to a number in brackets for browsers that don't support canvas/dynamic favicons? Boolean, or use the string 'force' to ensure a title update even in supported browsers.
 * abbreviate: should tinycon shrink large numbers such as 1000 to an abbreviated version (1k). Boolean, defaults to true
 
@@ -47,7 +48,8 @@ Tinycon.setOptions({
 	font: '10px arial',
 	color: '#ffffff',
 	background: '#549A2F',
-	fallback: true
+	fallback: true,
+	path: '/favicon.icon'
 });
 ```
 
@@ -66,7 +68,8 @@ require([
 		font: '10px arial',
 		color: '#ffffff',
 		background: '#549A2F',
-		fallback: true
+		fallback: true,
+		path: '/favicon.icon'
 	});
 
 	T.setBubble(7);
