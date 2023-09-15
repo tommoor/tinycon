@@ -24,7 +24,8 @@
     background: '#F03D25',
     fallback: true,
     crossOrigin: true,
-    abbreviate: true
+    abbreviate: true,
+    path: '/favicon.ico'
   };
 
   var ua = (function () {
@@ -73,7 +74,7 @@
 
     if (!originalFavicon || !currentFavicon) {
       var tag = getFaviconTag();
-      currentFavicon = tag ? tag.getAttribute('href') : '/favicon.ico';
+      currentFavicon = tag ? tag.getAttribute('href') : options.path;
       if (!originalFavicon) {
         originalFavicon = currentFavicon;
       }
